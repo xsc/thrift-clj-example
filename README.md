@@ -4,10 +4,22 @@ Example for [thrift-clj](https://github.com/xsc/thrift-clj) usage.
 
 ## Usage
 
-1. Clone this repository.
-2. Start the REPL: ```lein repl```
-3. Load the Example(s): ```(use 'example)```
-4. Run it: ```(-run)```
+The example implements a simple storage server that stores `Person` objects using a given ID
+and delivers them when requested.
+
+__Starting the Server__
+
+``
+lein run -m server [<Port>]
+``
+
+Default Port is 7007.
+
+__Starting the Client__
+
+``
+lein run -m client <Host> <Port> [--store <ID> <First Name> <Last Name> <Age> | --get <ID>]
+``
 
 ## License
 
