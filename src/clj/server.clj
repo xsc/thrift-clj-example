@@ -14,12 +14,11 @@
 (thrift/defservice person-index-service
   PersonIndex
   (storePerson [id p]
-    (if-not (@person-db id)
-      (do
-        (info "Storing Person:" p)
-        (swap! person-db assoc id p)
-        true)
-      false))
+    (boolean
+      (when-not (@person-db id)
+          (info "Storing Person:" p)
+          (swap! person-db assoc id p)
+          true)))
   (getPerson [id]
     (info "Retrieving Person for ID:" id)
     (@person-db id))) 
