@@ -6,7 +6,7 @@ Example for [thrift-clj](https://github.com/xsc/thrift-clj) usage.
 
 1. Clone this repository.
 2. Start the REPL: ```lein repl```
-3. Load the Example(s): ```(use 'example) 
+3. Load the Example(s): ```(use 'example)```
 4. Run it: ```(-run)```
 
 ## License
