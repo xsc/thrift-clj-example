@@ -18,7 +18,7 @@ Default Port is 7007.
 __Starting the Client__
 
 ``
-lein run -m client <Host> <Port> [--store <ID> <First Name> <Last Name> <Age> | --get <ID>]
+lein run -m client [-h <Host>] [-p <Port>] -c [store  <ID> <First Name> <Last Name> <Age> | get <ID>]
 ``
 
 ## License
