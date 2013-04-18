@@ -29,7 +29,5 @@
   ([port & args]
    (let [port (Integer/parseInt port)]
      (info "Running Server on Port" port "...")
-     (let [server (thrift/multi-threaded-server 
-                    person-index-service
-                    :socket port)]
-       (thrift/start-server! server)))))
+     (let [server (thrift/multi-threaded-server person-index-service port)]
+       (thrift/serve-and-block! server)))))

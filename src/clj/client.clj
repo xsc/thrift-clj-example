@@ -39,8 +39,7 @@
     (if command
       (do
         (info "Connecting to" (str host ":" port) "...")
-        (let [client (thrift/create-client PersonIndex :socket host port)]
-          (with-open [c (thrift/connect! client)]
-            (run-command c command params)))
+        (with-open [c (thrift/connect! PersonIndex [:socket host port])]
+          (run-command c command params))
         (info "Done."))
       (println help))))
