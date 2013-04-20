@@ -4,8 +4,8 @@
 
 ;; --- Import Thrift Classes
 (thrift/import
-  (:types [org.example Person])
-  (:services org.example.PersonIndex))
+  (:types [person.index Person PersonNotFound])
+  (:services person.index.PersonIndex))
 
 ;; --- Data Store
 (defonce person-db (atom {}))
@@ -21,7 +21,8 @@
           true)))
   (getPerson [id]
     (info "Retrieving Person for ID:" id)
-    (@person-db id))) 
+    (or (@person-db id)
+        (throw (thrift/->thrift (PersonNotFound. id))))))
 
 ;; --- Main
 (defn -main

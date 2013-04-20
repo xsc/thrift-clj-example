@@ -5,8 +5,8 @@
 
 ;; --- Import Classes
 (thrift/import
-  (:types [org.example Person])
-  (:clients org.example.PersonIndex))
+  (:types [person.index Person PersonNotFound])
+  (:clients person.index.PersonIndex))
 
 ;; --- Commands
 (defn- run-command
@@ -24,8 +24,11 @@
     "get" (let [[id] args
                 id (Integer/parseInt (str id))]
             (info "Retrieving Person using ID" id "...")
-            (let [p (PersonIndex/getPerson client id)]
-              (info "Person:" p)))
+            (thrift/try
+              (let [p (PersonIndex/getPerson client id)]
+                (info "Person:" p))
+              (catch PersonNotFound {:keys[id]}
+                (error "No person found with ID:" id))))
     (warn "No such Command:" cmd)))
 
 ;; --- Main

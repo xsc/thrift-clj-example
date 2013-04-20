@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/tools.logging "0.2.6"]
                  [org.clojure/tools.cli "0.2.2"]
-                 [thrift-clj "0.1.0-alpha7"]]
+                 [thrift-clj "0.1.0-alpha8"]]
   :source-paths ["src/clj"]
   :plugins [[lein-thriftc "0.1.0"]]
   :prep-tasks ["thriftc"])
