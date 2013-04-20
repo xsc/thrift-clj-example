@@ -22,7 +22,7 @@
   (getPerson [id]
     (info "Retrieving Person for ID:" id)
     (or (@person-db id)
-        (throw (thrift/->thrift (PersonNotFound. id))))))
+        (thrift/throw (PersonNotFound. id)))))
 
 ;; --- Main
 (defn -main
