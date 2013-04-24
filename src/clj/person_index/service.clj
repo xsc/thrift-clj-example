@@ -1,8 +1,10 @@
-(ns server
+(ns ^{ :doc "Service Implementation of PersonIndex"
+       :author "Yannick Scherer" }
+  person-index.service
   (:require [thrift-clj.core :as thrift])
   (:use clojure.tools.logging))
 
-;; --- Import Thrift Classes
+;; --- Import
 (thrift/import
   (:types [person.index Person PersonNotFound])
   (:services person.index.PersonIndex))
@@ -24,11 +26,11 @@
     (or (@person-db id)
         (thrift/throw (PersonNotFound. id)))))
 
-;; --- Main
-(defn -main
-  ([] (-main "7007"))
-  ([port & args]
-   (let [port (Integer/parseInt port)]
-     (info "Running Server on Port" port "...")
-     (let [server (thrift/multi-threaded-server person-index-service port)]
-       (thrift/serve-and-block! server)))))
+;; --- Running
+(defn run-person-index
+  "Run Person Index using the given Server Function and argument vector."
+  [server-fn [port & _]]
+  (let [port (Integer/parseInt port)]
+    (info "Running Server on Port" port "...")
+    (let [server (server-fn person-index-service port)]
+      (thrift/serve-and-block! server))))

@@ -1,4 +1,5 @@
-(ns client
+(ns
+  person-index.client
   (:require [thrift-clj.core :as thrift])
   (:use [clojure.tools.logging :only [info debug warn error]]
         [clojure.tools.cli :only [cli]]))
