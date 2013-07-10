@@ -9,17 +9,17 @@ and delivers them when requested.
 
 __Starting the Server__
 
-``
+```
 lein run -m person-index.server [<Port>]
-``
+```
 
 Default Port is 7007.
 
 __Starting the Client__
 
-``
+```
 lein run -m person-index.client [-h <Host>] [-p <Port>] -c [store  <ID> <First Name> <Last Name> <Age> | get <ID>]
-``
+```
 
 ## License
 
